@@ -1,0 +1,11 @@
+[
+  {
+    "id": 1,
+    "nombre": "Admin Lucesa",
+    "email": "admin@lucesamexico.com",
+    "password_hash": "$2b$12$kMn8fQREdw384KnZGlJ/2OZ/5njyhDnntu34tWgAukqWXDExReTwe",
+    "es_admin": true,
+    "fecha_pedido": "2026-03-24T17:14:54.195Z",
+    "fecha_registro": "2026-03-24T17:14:54.195Z"
+  }
+]

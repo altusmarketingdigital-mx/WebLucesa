@@ -1,0 +1,31 @@
+# Node dependencies
+node_modules/
+dist/
+dist-ssr/
+*.local
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment variables
+.env
+.env.production
+.env.local
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Backups
+*.zip
+FINAL_DEPLOY_TEMP/
+clean_env/
+deploy_flat/
+env_lucesa/
+hostinger_deploy/
+hostinger_ready/
+sein_store_preview/

@@ -1,0 +1,497 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ASUS ROG Strix GeForce RTX 4080 - Lucesa Distribución</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/src/style.css?v=1775676969">
+    <style>
+      .product-detail-container {
+        display: grid;
+        grid-template-columns: 1fr 400px;
+        gap: 40px;
+        background: var(--color-bg-white);
+        padding: 40px;
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-sm);
+        border: 1px solid var(--color-border);
+        margin-top: 30px;
+      }
+      
+      /* Gallery */
+      .product-gallery {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+      }
+      .main-image {
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-lg);
+        padding: 30px;
+        text-align: center;
+        background: var(--color-bg-white);
+      }
+      .main-image img {
+        max-width: 100%;
+        max-height: 400px;
+        object-fit: contain;
+      }
+      .thumbnail-list {
+        display: flex;
+        gap: 15px;
+        justify-content: center;
+      }
+      .thumbnail-list img {
+        width: 80px;
+        height: 80px;
+        object-fit: contain;
+        border: 2px solid var(--color-border);
+        border-radius: var(--radius-md);
+        cursor: pointer;
+        padding: 8px;
+        background: var(--color-bg-white);
+        transition: all var(--transition-fast);
+      }
+      .thumbnail-list img:hover {
+        border-color: #cbd5e1;
+      }
+      .thumbnail-list img.active {
+        border-color: var(--color-primary);
+        box-shadow: 0 0 0 2px rgba(18, 62, 102, 0.1);
+      }
+
+      /* BUY Info Box */
+      .buy-box {
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-lg);
+        padding: 30px;
+        background: var(--color-bg-light);
+      }
+      .brand-badge {
+        font-size: 13px;
+        color: var(--color-text-muted);
+        text-transform: uppercase;
+        font-weight: 700;
+        margin-bottom: 12px;
+        display: block;
+        letter-spacing: 0.5px;
+      }
+      .product-title-full {
+        font-size: 26px;
+        font-weight: 800;
+        margin-bottom: 24px;
+        line-height: 1.25;
+        color: var(--color-text-main);
+        letter-spacing: -0.5px;
+      }
+      .price-big {
+        font-size: 38px;
+        font-weight: 800;
+        color: var(--color-primary);
+        margin-bottom: 4px;
+        letter-spacing: -1px;
+      }
+      .availability {
+        font-size: 14px;
+        color: var(--color-success);
+        font-weight: 600;
+        margin-bottom: 24px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      
+      /* Action Buttons */
+      .buy-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        margin-top: 24px;
+        margin-bottom: 30px;
+      }
+      .btn-buy-now {
+        background-color: var(--color-secondary);
+        color: white;
+        font-size: 16px;
+        padding: 14px;
+        box-shadow: 0 2px 4px rgba(75, 146, 216, 0.3);
+      }
+      .btn-buy-now:hover { 
+        background-color: var(--color-secondary-hover);
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(75, 146, 216, 0.25);
+      }
+      
+      .btn-whatsapp {
+        background-color: #25d366;
+        color: white;
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 14px;
+        box-shadow: 0 2px 4px rgba(37, 211, 102, 0.3);
+      }
+      .btn-whatsapp:hover { 
+        background-color: #128c7e; 
+        color:white; 
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(37, 211, 102, 0.25);
+      }
+
+      /* Details Tabs */
+      .product-tabs {
+        margin-top: 40px;
+        background: var(--color-bg-white);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-sm);
+        border: 1px solid var(--color-border);
+        padding: 40px;
+      }
+      .tab-headers {
+        display: flex;
+        border-bottom: 1px solid var(--color-border);
+        margin-bottom: 30px;
+      }
+      .tab-header {
+        padding: 12px 24px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        border-bottom: 3px solid transparent;
+        color: var(--color-text-muted);
+        transition: all var(--transition-fast);
+      }
+      .tab-header:hover {
+        color: var(--color-text-main);
+      }
+      .tab-header.active {
+        border-bottom-color: var(--color-primary);
+        color: var(--color-primary);
+      }
+      .tab-content {
+        display: none;
+        line-height: 1.8;
+        color: var(--color-text-main);
+      }
+      .tab-content.active {
+        display: block;
+      }
+      
+      /* Specs table */
+      .specs-table {
+        width: 100%;
+        border-collapse: collapse;
+        border-radius: var(--radius-md);
+        overflow: hidden;
+        border: 1px solid var(--color-border);
+      }
+      .specs-table th, .specs-table td {
+        padding: 16px 20px;
+        border-bottom: 1px solid var(--color-border);
+      }
+      .specs-table th {
+        background: var(--color-bg-light);
+        text-align: left;
+        width: 35%;
+        color: var(--color-text-main);
+        font-weight: 600;
+      }
+      .specs-table td {
+        color: var(--color-text-muted);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Top Bar & Header (Simplified) -->
+    <header class="main-header"><div class="container header-inner"><a href="/" class="logo"><img src="/logo.svg" alt="Lucesa" class="logo-img"><span>Lucesa</span> Distribución</a><div class="header-actions"><a href="/profile.html" class="action-item" title="Mi Cuenta"><i class="far fa-user"></i><span class="action-text">Mi Cuenta</span></a><a href="/cart.html" class="action-item cart-action"><i class="fas fa-shopping-cart"></i><span class="cart-count" style="display: none;">0</span><span class="action-text">Carrito</span></a></div></div></header>
+
+    <main class="container">
+      <!-- Breadcrumb -->
+      <div id="productBreadcrumbs" style="padding: 15px 0; font-size: 13px; color: var(--color-text-muted);">
+        <a href="/">Inicio</a> &gt; <span>Cargando...</span>
+      </div>
+
+      <div class="product-detail-container">
+        <!-- Gallery -->
+        <div class="product-gallery">
+          <div class="main-image">
+             <img src="/assets/no-image.png" alt="Cargando..." id="mainProductImage" style="opacity: 0.5;">
+          </div>
+          <div class="thumbnail-list" id="productThumbnails">
+             <!-- Thumbs generated by JS -->
+          </div>
+        </div>
+
+        <!-- Buy Info -->
+        <div class="buy-box">
+          <span class="brand-badge" id="productBrand">Cargando...</span>
+          <h1 class="product-title-full" id="productTitle">Cargando Producto...</h1>
+          
+          <div style="margin-bottom: 20px;">
+            <div class="price-big" id="productPrice">$0.00</div>
+            <div class="old-price" style="font-size:16px;" id="productOldPrice"></div>
+          </div>
+          
+          <div class="availability" id="productAvailability"><i class="fas fa-spinner fa-spin"></i> Consultando inventario...</div>
+          
+          <div style="font-size: 14px; color: var(--color-text-muted); border-top: 1px solid var(--color-border); padding-top: 15px; margin-top: 15px;">
+            <p><i class="fas fa-truck"></i> Envío a todo México</p>
+            <p><i class="fas fa-shield-alt"></i> Garantía con el fabricante</p>
+            <p><i class="fas fa-file-invoice-dollar"></i> Facturación disponible</p>
+          </div>
+
+          <div class="buy-actions" id="buyActionsContainer">
+            <button class="btn btn-buy-now btn-block disabled" disabled><i class="fas fa-bolt"></i> Comprar Ahora</button>
+            <button class="btn btn-primary btn-block add-to-cart-btn disabled" disabled><i class="fas fa-cart-plus"></i> Agregar al Carrito</button>
+            <a href="https://wa.me/525610177596" class="btn btn-whatsapp btn-block" id="whatsappBtn" target="_blank"><i class="fab fa-whatsapp"></i> Preguntar por WhatsApp</a>
+          </div>
+          
+          <div style="text-align: center;">
+             <div class="payment-methods-icons" style="display: flex; gap: 15px; font-size: 24px; color: #475569; margin-top: 5px;">
+                <i class="fab fa-cc-paypal" title="PayPal"></i>
+                <i class="fab fa-cc-visa" title="Visa"></i>
+                <i class="fab fa-cc-mastercard" title="Mastercard"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Specs Tabs -->
+      <div class="product-tabs">
+        <div class="tab-headers">
+           <div class="tab-header active" data-target="#desc">Descripción</div>
+           <div class="tab-header" data-target="#specs">Especificaciones Técnicas</div>
+        </div>
+        
+        <div class="tab-content active" id="desc">
+           <div id="productDescriptionContent">
+             <i class="fas fa-spinner fa-spin"></i> Cargando descripción del producto...
+           </div>
+        </div>
+        
+        <div class="tab-content" id="specs">
+           <table class="specs-table" id="productSpecsTable">
+             <!-- Specs generated by JS -->
+             <tr><td><i class="fas fa-spinner fa-spin"></i> Cargando especificaciones...</td></tr>
+           </table>
+        </div>
+      </div>
+      
+    </main>
+    <div style="height: 50px;"></div>
+
+    <script type="module" src="/src/main.js"></script>
+    <script>
+      // Tabs logic
+      const tabHeaders = document.querySelectorAll('.tab-header');
+      const tabContents = document.querySelectorAll('.tab-content');
+      
+      tabHeaders.forEach(header => {
+        header.addEventListener('click', () => {
+           tabHeaders.forEach(h => h.classList.remove('active'));
+           tabContents.forEach(c => c.classList.remove('active'));
+           
+           header.classList.add('active');
+           const target = document.querySelector(header.getAttribute('data-target'));
+           if (target) target.classList.add('active');
+        });
+      });
+    </script>
+
+    <!-- Footer -->
+    <footer class="main-footer" style="margin-top: 60px;">
+      <div class="container footer-inner">
+        <div class="footer-col">
+          <a href="/" class="logo logo-footer">
+            <img src="/logo.svg" alt="Lucesa" class="logo-img"><span>Lucesa</span> Distribución
+          </a>
+          <p>Tu tienda de tecnología de confianza. Los mejores precios, el mejor servicio.</p>          <div class="social-links">
+            <a href="https://www.facebook.com/profile.php?id=61585086569466" target="_blank"><i class="fab fa-facebook-f"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Atención al cliente</h4>
+          <ul>
+            <li><a href="/help.html">Centro de ayuda</a></li>
+            <li><a href="/help.html">Garantías</a></li>
+            <li><a href="/help.html">Devoluciones</a></li>
+            <li><a href="/help.html">Facturación</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Nuestra Empresa</h4>
+          <ul>
+            <li><a href="/about.html">Acerca de nosotros</a></li>
+            <li><a href="/blog.html">Blog</a></li>
+            <li><a href="/privacy.html">Aviso de privacidad</a></li>
+            <li><a href="/terms.html">Términos y condiciones</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Boletín</h4>
+          <p>Suscríbete para recibir ofertas exclusivas.</p>
+          <form class="newsletter-form">
+            <input type="email" placeholder="Tu correo electrónico">
+            <button class="btn btn-primary" type="button">Suscribir</button>
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="container">
+          <p>&copy; 2026 Lucesa Distribución. Todos los derechos reservados.</p>
+          <div class="payment-methods">
+            <i class="fab fa-cc-visa"></i>
+            <i class="fab fa-cc-mastercard"></i>
+            <i class="fab fa-paypal"></i>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Fetch Product Logic
+      const API_BASE = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') ? 'http://localhost:3001' : '';
+      const urlParams = new URLSearchParams(window.location.search);
+      const productId = urlParams.get('id');
+
+      if (!productId) {
+         document.getElementById('productTitle').textContent = 'Error: Producto no especificado';
+         document.getElementById('productAvailability').innerHTML = 'No se encontró el SKU en la URL';
+      } else {
+          // 1. INSTANT MODE: Check if we have preview data from the previous page
+          const preview = JSON.parse(localStorage.getItem('lucesa_product_preview') || 'null');
+          if (preview && preview.id === productId && (preview.timestamp + 300000 > Date.now())) { // 5 min fresh
+              console.log('Instant Mode: Rendering preview data');
+              renderProductData(preview.data, true);
+          }
+
+          fetchProductDetail(productId);
+      }
+
+      async function fetchProductDetail(id) {
+          fetch(`${API_BASE}/api/products/${encodeURIComponent(id)}`)
+            .then(res => res.json())
+            .then(data => {
+                const p = data.articulo || data;
+                if (!p || p.error) {
+                    // Only show 404 if we don't already have preview data
+                    if (!document.getElementById('productTitle').textContent || document.getElementById('productTitle').textContent === 'Cargando Producto...') {
+                        document.getElementById('productTitle').textContent = 'Producto no encontrado';
+                        document.getElementById('productAvailability').innerHTML = 'Error al cargar el producto';
+                    }
+                    return;
+                }
+                renderProductData(p, false);
+            })
+            .catch(err => {
+                console.error('Error fetching detail:', err);
+                // If we don't have preview data showing, show a detailed error
+                if (document.getElementById('productTitle').textContent === 'Cargando Producto...') {
+                    document.getElementById('productTitle').textContent = 'Error de conexión';
+                    document.getElementById('productAvailability').innerHTML = `
+                        <div style="color:var(--color-danger); margin-bottom:15px;">
+                            <i class="fas fa-exclamation-triangle"></i> No se pudo obtener la información completa del servidor.
+                        </div>
+                        <button onclick="location.reload()" class="btn-buy-now" style="background:var(--color-primary); color:white; padding:8px 20px; border-radius:5px; cursor:pointer;">
+                            Reintentar Carga
+                        </button>
+                    `;
+                }
+            });
+      }
+
+      function renderProductData(p, isPreview) {
+                // Basic Info
+                document.title = `${p.nombre} - Lucesa Distribución`;
+                document.getElementById('productTitle').textContent = p.nombre || 'Producto';
+                document.getElementById('productBrand').textContent = p.marca || 'Desconocida';
+                
+                // Breadcrumbs
+                const breadcrumbs = document.getElementById('productBreadcrumbs');
+                if (breadcrumbs) {
+                    breadcrumbs.innerHTML = `<a href="/">Inicio</a> &gt; <a href="/category.html?cat=${encodeURIComponent(p.categoria || '')}">${p.categoria || 'Catálogo'}</a> &gt; <strong>${p.nombre}</strong>`;
+                }
+
+                const finalSKU = p.clave || p.numParte || productId;
+
+
+                // Pricing
+                let finalPrice = parseFloat(p.precio) || 0;
+                if (p.moneda === 'USD' && p.tipoCambio) finalPrice = finalPrice * parseFloat(p.tipoCambio);
+                const formatPrice = (price) => new Intl.NumberFormat('es-MX', { style: 'currency', currency: 'MXN' }).format(price);
+                document.getElementById('productPrice').textContent = formatPrice(finalPrice);
+                document.getElementById('productOldPrice').textContent = `Precio Normal: ${formatPrice(finalPrice * 1.15)}`;
+                
+                // Reset image opacity
+                document.getElementById('mainProductImage').style.opacity = '1';
+
+                // Stock formatting
+                let stockTotal = p.stockTotal !== undefined ? p.stockTotal : 0;
+                if (p.existencia !== undefined) {
+                    if (typeof p.existencia === 'object' && p.existencia !== null) {
+                        stockTotal = Object.values(p.existencia).reduce((acc, val) => acc + (parseInt(val) || 0), 0);
+                    } else {
+                        stockTotal = parseInt(p.existencia) || 0;
+                    }
+                }
+                const availEl = document.getElementById('productAvailability');
+                if (stockTotal > 0) {
+                    availEl.innerHTML = `<i class="fas fa-check-circle"></i> En stock: ${stockTotal} disponibles`;
+                    availEl.style.color = 'var(--color-success)';
+                    
+                    // Enable buttons
+                    const addBtn = document.querySelector('.add-to-cart-btn');
+                    if (addBtn) {
+                        addBtn.disabled = false;
+                        addBtn.classList.remove('disabled');
+                        addBtn.style.opacity = '1';
+                        addBtn.onclick = () => window.addToCart(finalSKU, 1);
+                    }
+                    
+                    const buyBtn = document.querySelector('.btn-buy-now');
+                    if (buyBtn) {
+                        buyBtn.disabled = false;
+                        buyBtn.classList.remove('disabled');
+                        buyBtn.style.opacity = '1';
+                        buyBtn.onclick = () => { window.addToCart(finalSKU, 1); window.location.href='/cart.html'; };
+                    }
+
+                } else {
+                    availEl.innerHTML = `<i class="fas fa-times-circle"></i> Agotado / Sobre pedido`;
+                    availEl.style.color = 'var(--color-danger)';
+                }
+
+                // Image handling
+                const rawImg = p.imagen || '/assets/no-image.png';
+                const defaultImg = (p.imagen && p.imagen.startsWith('http'))
+                    ? `${API_BASE}/api/image-proxy?url=${encodeURIComponent(p.imagen)}`
+                    : '/assets/no-image.png';
+                
+                const mainImg = document.getElementById('mainProductImage');
+                mainImg.src = defaultImg;
+                mainImg.onerror = () => { mainImg.src = '/assets/no-image.png'; };
+                
+                document.getElementById('productThumbnails').innerHTML = `<img src="${defaultImg}" class="active" onerror="this.src='/assets/no-image.png'">`;
+
+                // Description
+                document.getElementById('productDescriptionContent').innerHTML = p.descripcion_corta || 'Sin descripción detallada por parte del proveedor.';
+
+                // Specifications Table
+                const specsTable = document.getElementById('productSpecsTable');
+                if (p.especificaciones && Array.isArray(p.especificaciones) && p.especificaciones.length > 0) {
+                    specsTable.innerHTML = p.especificaciones.map(spec => `<tr><th>${spec.tipo}</th><td>${spec.valor}</td></tr>`).join('');
+                } else {
+                    specsTable.innerHTML = '<tr><td>No hay especificaciones técnicas disponibles.</td></tr>';
+                }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,579 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mi Cuenta - Lucesa Distribución</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/src/style.css?v=1775676969">
+    <style>
+      .profile-container {
+        display: grid;
+        grid-template-columns: 260px 1fr;
+        gap: 32px;
+        margin-top: 40px;
+        margin-bottom: 60px;
+      }
+
+      /* Sidebar */
+      .profile-sidebar {
+        background: var(--color-bg-white);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-sm);
+        border: 1px solid var(--color-border);
+        padding: 30px 0;
+        height: fit-content;
+      }
+      .user-info {
+        text-align: center;
+        padding-bottom: 24px;
+        border-bottom: 1px solid var(--color-border);
+        margin-bottom: 16px;
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+      .user-avatar {
+        width: 88px;
+        height: 88px;
+        background: linear-gradient(135deg, var(--color-primary), #2d7d46);
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 36px;
+        color: white;
+        margin-bottom: 14px;
+        font-weight: 700;
+      }
+      .user-name {
+        font-weight: 800;
+        font-size: 18px;
+        color: var(--color-text-main);
+        letter-spacing: -0.5px;
+      }
+      .user-email {
+        font-size: 13px;
+        color: var(--color-text-muted);
+        margin-top: 4px;
+      }
+      .user-since {
+        font-size: 12px;
+        color: #94a3b8;
+        margin-top: 6px;
+      }
+
+      .profile-nav {
+        list-style: none;
+      }
+      .profile-nav li a {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 13px 24px;
+        color: var(--color-text-muted);
+        font-weight: 500;
+        font-size: 15px;
+        border-left: 3px solid transparent;
+        transition: all var(--transition-fast);
+        cursor: pointer;
+      }
+      .profile-nav li a:hover,
+      .profile-nav li a.active {
+        background: var(--color-bg-light);
+        color: var(--color-primary);
+      }
+      .profile-nav li a.active {
+        border-left-color: var(--color-primary);
+        font-weight: 700;
+      }
+      .profile-nav li a i { width: 20px; text-align: center; font-size: 16px; }
+
+      /* Content */
+      .profile-content {
+        background: var(--color-bg-white);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-sm);
+        border: 1px solid var(--color-border);
+        padding: 40px;
+      }
+      .content-header {
+        border-bottom: 1px solid var(--color-border);
+        padding-bottom: 18px;
+        margin-bottom: 28px;
+      }
+      .content-title {
+        font-size: 22px;
+        font-weight: 800;
+        color: var(--color-text-main);
+        letter-spacing: -0.5px;
+      }
+
+      /* Tab panels */
+      .tab-panel { display: none; }
+      .tab-panel.active { display: block; }
+
+      /* Edit form */
+      .edit-form .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+      .edit-form .form-group { margin-bottom: 18px; }
+      .edit-form label {
+        display: block;
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--color-text-main);
+        margin-bottom: 7px;
+      }
+      .edit-form input {
+        width: 100%;
+        padding: 11px 14px;
+        border: 1.5px solid var(--color-border);
+        border-radius: 8px;
+        font-family: 'Inter', sans-serif;
+        font-size: 15px;
+        box-sizing: border-box;
+        transition: border .2s;
+        background: #f8fafc;
+      }
+      .edit-form input:focus {
+        border-color: var(--color-primary);
+        outline: none;
+        background: #fff;
+      }
+      .btn-save {
+        padding: 12px 28px;
+        background: var(--color-primary);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-weight: 700;
+        font-size: 15px;
+        cursor: pointer;
+        font-family: 'Inter', sans-serif;
+        transition: background .2s, transform .15s;
+      }
+      .btn-save:hover { background: var(--color-primary-hover); transform: translateY(-1px); }
+
+      /* Orders table */
+      .orders-table { width: 100%; border-collapse: collapse; }
+      .orders-table th, .orders-table td {
+        padding: 14px 16px;
+        text-align: left;
+        border-bottom: 1px solid var(--color-border);
+        font-size: 14px;
+      }
+      .orders-table th {
+        background: var(--color-bg-light);
+        font-weight: 700;
+        color: var(--color-text-main);
+      }
+      .status { padding: 5px 11px; border-radius: 20px; font-size: 12px; font-weight: 700; }
+      .status.completado { background: #dcfce7; color: #166534; }
+      .status.procesando { background: #fef9c3; color: #854d0e; }
+      .status.cancelado  { background: #fee2e2; color: #991b1b; }
+
+      .empty-state {
+        text-align: center;
+        padding: 60px 20px;
+        color: var(--color-text-muted);
+      }
+      .empty-state i { font-size: 48px; opacity: .3; display: block; margin-bottom: 16px; }
+
+      /* Alert */
+      .alert {
+        padding: 12px 16px;
+        border-radius: 8px;
+        font-size: 14px;
+        margin-bottom: 18px;
+        display: none;
+        align-items: center;
+        gap: 10px;
+      }
+      .alert.error   { background: #fef2f2; color: #dc2626; border: 1px solid #fecaca; display: flex; }
+      .alert.success { background: #f0fdf4; color: #16a34a; border: 1px solid #bbf7d0; display: flex; }
+
+      @media (max-width: 768px) {
+        .profile-container { grid-template-columns: 1fr; }
+        .edit-form .form-row { grid-template-columns: 1fr; }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="main-header">
+      <div class="container header-inner">
+        <a href="/" class="logo"><img src="/logo.svg" alt="Lucesa" class="logo-img"><span>Lucesa</span> Distribución</a>
+        <div class="header-actions">
+          <a href="/profile.html" class="action-item" title="Mi Cuenta">
+            <i class="far fa-user"></i>
+            <span class="action-text" id="headerUserName">Mi Cuenta</span>
+          </a>
+          <a href="/cart.html" class="action-item cart-action" title="Carrito">
+            <i class="fas fa-shopping-cart"></i><span class="cart-count">0</span>
+            <span class="action-text">Carrito</span>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+      <div class="profile-container">
+        <!-- Sidebar -->
+        <aside class="profile-sidebar">
+          <div class="user-info">
+            <div class="user-avatar" id="avatarInitials">👤</div>
+            <div class="user-name"  id="sidebarName">Cargando...</div>
+            <div class="user-email" id="sidebarEmail"></div>
+            <div class="user-since" id="sidebarSince"></div>
+          </div>
+          <ul class="profile-nav">
+            <li><a href="#" class="active" data-tab="pedidos"><i class="fas fa-box"></i> Mis Pedidos</a></li>
+            <li><a href="#" data-tab="datos"><i class="fas fa-user-circle"></i> Datos Personales</a></li>
+            <li><a href="#" data-tab="seguridad"><i class="fas fa-lock"></i> Seguridad</a></li>
+            <li id="adminLink" style="display:none;"><a href="/admin.html" style="color:var(--color-primary);"><i class="fas fa-user-shield"></i> Panel Administrador</a></li>
+            <li><a href="#" id="logoutBtn" style="color:var(--color-danger); margin-top:16px;"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
+          </ul>
+        </aside>
+
+        <!-- Content -->
+        <div class="profile-content">
+
+          <!-- Tab: Mis Pedidos -->
+          <div class="tab-panel active" id="tab-pedidos">
+            <div class="content-header">
+              <h2 class="content-title">Mis Pedidos</h2>
+            </div>
+            <div id="ordersContainer">
+              <div class="empty-state">
+                <i class="fas fa-box-open"></i>
+                <p>Aún no tienes pedidos registrados.</p>
+                <a href="/" class="btn-save" style="display:inline-block;margin-top:12px;text-decoration:none;">Ir a comprar</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tab: Datos Personales -->
+          <div class="tab-panel" id="tab-datos">
+            <div class="content-header">
+              <h2 class="content-title">Datos Personales</h2>
+            </div>
+            <div id="alertDatos" class="alert"></div>
+            <form class="edit-form" id="datosForm">
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Nombre</label>
+                  <input type="text" id="editNombre" placeholder="Juan">
+                </div>
+                <div class="form-group">
+                  <label>Apellido</label>
+                  <input type="text" id="editApellido" placeholder="Pérez">
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Correo electrónico</label>
+                <input type="email" id="editEmail" disabled style="opacity:.6;cursor:not-allowed;">
+                <small style="color:#94a3b8;font-size:12px;">El email no puede modificarse.</small>
+              </div>
+              <div class="form-group">
+                <label>Teléfono</label>
+                <input type="tel" id="editTelefono" placeholder="55 1234 5678">
+              </div>
+              <button type="submit" class="btn-save"><i class="fas fa-save"></i> Guardar cambios</button>
+            </form>
+          </div>
+
+          <!-- Tab: Seguridad -->
+          <div class="tab-panel" id="tab-seguridad">
+            <div class="content-header">
+              <h2 class="content-title">Cambiar Contraseña</h2>
+            </div>
+            <div id="alertSeguridad" class="alert"></div>
+            <form class="edit-form" id="pwForm" style="max-width:400px;">
+              <div class="form-group">
+                <label>Nueva contraseña</label>
+                <input type="password" id="newPassword" placeholder="Mínimo 8 caracteres">
+              </div>
+              <div class="form-group">
+                <label>Confirmar contraseña</label>
+                <input type="password" id="confirmNewPassword" placeholder="Repite la nueva contraseña">
+              </div>
+              <button type="submit" class="btn-save"><i class="fas fa-key"></i> Cambiar contraseña</button>
+            </form>
+          </div>
+
+        </div><!-- /profile-content -->
+      </div>
+    </main>
+
+    <script type="module">
+      import apiFetch from './src/api.js';
+
+      const API   = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') ? 'http://localhost:3001' : '';
+
+      const token = localStorage.getItem('lucesa_token');
+      const user  = JSON.parse(localStorage.getItem('lucesa_user') || 'null');
+
+      // Redirigir al login si no está autenticado (falta token o datos de usuario)
+      if (!token || !user) {
+        console.warn('[Auth] No detectado token o usuario. Redirigiendo a login...');
+        window.location.replace('/login.html?next=/profile.html');
+      }
+
+      // ─── Render inmediato con caché de localStorage ──────────────────────────
+      // Siempre mostramos los datos guardados al instante mientras la API carga
+      if (user) renderSidebar(user);
+
+      // ─── Poblar sidebar ──────────────────────────────────────────────────────
+      function renderSidebar(u) {
+        const initials = ((u.nombre?.[0] || '') + (u.apellido?.[0] || '')).toUpperCase() || '👤';
+        document.getElementById('avatarInitials').textContent = initials || '👤';
+        document.getElementById('sidebarName').textContent = `${u.nombre} ${u.apellido || ''}`.trim();
+        document.getElementById('sidebarEmail').textContent = u.email;
+        document.getElementById('headerUserName').textContent = u.nombre;
+        if (u.fechaRegistro) {
+          const d = new Date(u.fechaRegistro).toLocaleDateString('es-MX', { month: 'long', year: 'numeric' });
+          document.getElementById('sidebarSince').textContent = `Miembro desde ${d}`;
+        }
+        // Prellenar formulario
+        document.getElementById('editNombre').value   = u.nombre   || '';
+        document.getElementById('editApellido').value = u.apellido || '';
+        document.getElementById('editEmail').value    = u.email    || '';
+        document.getElementById('editTelefono').value = u.telefono || '';
+        
+        // Show admin link if applicable
+        if (u.es_admin) {
+          document.getElementById('adminLink').style.display = 'block';
+        }
+      }
+
+      // ─── Refrescar perfil desde API (en segundo plano) ──────────────────────
+      async function loadProfile() {
+        try {
+          const res = await apiFetch(`/api/auth/me`);
+          if (!res) return;
+
+          if (!res.ok) {
+            console.warn('[Profile] API respondió', res.status, '— usando caché local.');
+            return;
+          }
+          const data = await res.json();
+          if (data.user) {
+            localStorage.setItem('lucesa_user', JSON.stringify(data.user));
+            renderSidebar(data.user);
+          }
+        } catch (e) {
+          console.warn('[Profile] Error de red — usando caché local.');
+        }
+      }
+
+      loadProfile();
+
+      // ─── Cargar pedidos del usuario ─────────────────────────────────────────
+      async function loadOrders() {
+        const container = document.getElementById('ordersContainer');
+        try {
+          const res = await apiFetch(`/api/orders/user`);
+          if (!res) return;
+          
+          if (!res.ok) throw new Error('Error al cargar pedidos.');
+          const orders = await res.json();
+
+          if (orders.length === 0) {
+            container.innerHTML = `
+              <div class="empty-state">
+                <i class="fas fa-box-open"></i>
+                <p>Aún no tienes pedidos registrados.</p>
+                <a href="/" class="btn-save" style="display:inline-block;margin-top:12px;text-decoration:none;">Ir a comprar</a>
+              </div>
+            `;
+            return;
+          }
+
+          let html = `
+            <table class="orders-table">
+              <thead>
+                <tr>
+                  <th>Pedido</th>
+                  <th>Fecha</th>
+                  <th>Método</th>
+                  <th>Total</th>
+                  <th>Estatus</th>
+                </tr>
+              </thead>
+              <tbody>
+          `;
+
+          orders.forEach(o => {
+            const date = new Date(o.fecha).toLocaleDateString('es-MX', { day: '2-digit', month: '2-digit', year: 'numeric' });
+            const total = new Intl.NumberFormat('es-MX', { style: 'currency', currency: 'MXN' }).format(o.total);
+            const statusClass = (o.estatus || '').toLowerCase().replace(' ', '-');
+            
+            html += `
+              <tr>
+                <td><strong>#PED-${o.id}</strong></td>
+                <td>${date}</td>
+                <td>${o.metodo_pago}</td>
+                <td>${total}</td>
+                <td><span class="status ${statusClass}">${o.estatus}</span></td>
+              </tr>
+            `;
+          });
+
+          html += '</tbody></table>';
+          container.innerHTML = html;
+        } catch (e) {
+          container.innerHTML = `<div class="empty-state" style="color:var(--color-danger);"><i class="fas fa-exclamation-triangle"></i><p>${e.message}</p></div>`;
+        }
+      }
+
+      loadOrders();
+
+      // ─── Navegación por pestañas ─────────────────────────────────────────────
+      document.querySelectorAll('.profile-nav li a[data-tab]').forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          document.querySelectorAll('.profile-nav li a').forEach(a => a.classList.remove('active'));
+          document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+          link.classList.add('active');
+          document.getElementById(`tab-${link.dataset.tab}`).classList.add('active');
+        });
+      });
+
+      // ─── Cerrar sesión ───────────────────────────────────────────────────────
+      document.getElementById('logoutBtn').addEventListener('click', (e) => {
+        e.preventDefault();
+        localStorage.removeItem('lucesa_token');
+        localStorage.removeItem('lucesa_user');
+        window.location.href = '/login.html';
+      });
+
+      // ─── Guardar datos personales ────────────────────────────────────────────
+      document.getElementById('datosForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const alertEl = document.getElementById('alertDatos');
+        alertEl.className = 'alert';
+        alertEl.style.display = 'none';
+
+        try {
+          const res = await apiFetch(`/api/auth/me`, {
+            method:  'PATCH',
+            body: JSON.stringify({
+              nombre:   document.getElementById('editNombre').value.trim(),
+              apellido: document.getElementById('editApellido').value.trim(),
+              telefono: document.getElementById('editTelefono').value.trim()
+            })
+          });
+          if (!res) return;
+          const data = await res.json();
+          if (!res.ok) throw new Error(data.error || 'Error al guardar.');
+          localStorage.setItem('lucesa_user', JSON.stringify(data.user));
+          renderSidebar(data.user);
+          alertEl.className = 'alert success';
+          alertEl.innerHTML = '<i class="fas fa-check-circle"></i> Datos actualizados correctamente.';
+          alertEl.style.display = 'flex';
+        } catch (err) {
+          alertEl.className = 'alert error';
+          alertEl.innerHTML = `<i class="fas fa-exclamation-circle"></i> ${err.message}`;
+          alertEl.style.display = 'flex';
+        }
+      });
+
+      // ─── Cambiar contraseña ──────────────────────────────────────────────────
+      document.getElementById('pwForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const alertEl  = document.getElementById('alertSeguridad');
+        const newPw    = document.getElementById('newPassword').value;
+        const confirm  = document.getElementById('confirmNewPassword').value;
+
+        alertEl.className = 'alert';
+        alertEl.style.display = 'none';
+
+        if (newPw.length < 8) {
+          alertEl.className = 'alert error';
+          alertEl.innerHTML = '<i class="fas fa-exclamation-circle"></i> La contraseña debe tener al menos 8 caracteres.';
+          alertEl.style.display = 'flex';
+          return;
+        }
+        if (newPw !== confirm) {
+          alertEl.className = 'alert error';
+          alertEl.innerHTML = '<i class="fas fa-exclamation-circle"></i> Las contraseñas no coinciden.';
+          alertEl.style.display = 'flex';
+          return;
+        }
+
+        try {
+          const res = await apiFetch(`/api/auth/me`, {
+            method:  'PATCH',
+            body: JSON.stringify({ password: newPw })
+          });
+          if (!res) return;
+          const data = await res.json();
+          if (!res.ok) throw new Error(data.error || 'Error al cambiar contraseña.');
+          document.getElementById('newPassword').value        = '';
+          document.getElementById('confirmNewPassword').value = '';
+          alertEl.className = 'alert success';
+          alertEl.innerHTML = '<i class="fas fa-check-circle"></i> Contraseña actualizada correctamente.';
+          alertEl.style.display = 'flex';
+        } catch (err) {
+          alertEl.className = 'alert error';
+          alertEl.innerHTML = `<i class="fas fa-exclamation-circle"></i> ${err.message}`;
+          alertEl.style.display = 'flex';
+        }
+      });
+    </script>
+    <!-- Footer -->
+    <footer class="main-footer" style="margin-top: 60px;">
+      <div class="container footer-inner">
+        <div class="footer-col">
+          <a href="/" class="logo logo-footer">
+            <img src="/logo.svg" alt="Lucesa" class="logo-img"><span>Lucesa</span> Distribución
+          </a>
+          <p>Tu tienda de tecnología de confianza. Los mejores precios, el mejor servicio.</p>          <div class="social-links">
+            <a href="https://www.facebook.com/profile.php?id=61585086569466" target="_blank"><i class="fab fa-facebook-f"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Atención al cliente</h4>
+          <ul>
+            <li><a href="/help.html">Centro de ayuda</a></li>
+            <li><a href="/help.html">Garantías</a></li>
+            <li><a href="/help.html">Devoluciones</a></li>
+            <li><a href="/help.html">Facturación</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Nuestra Empresa</h4>
+          <ul>
+            <li><a href="/about.html">Acerca de nosotros</a></li>
+            <li><a href="/blog.html">Blog</a></li>
+            <li><a href="/privacy.html">Aviso de privacidad</a></li>
+            <li><a href="/terms.html">Términos y condiciones</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Boletín</h4>
+          <p>Suscríbete para recibir ofertas exclusivas.</p>
+          <form class="newsletter-form">
+            <input type="email" placeholder="Tu correo electrónico">
+            <button class="btn btn-primary" type="button">Suscribir</button>
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="container">
+          <p>&copy; 2026 Lucesa Distribución. Todos los derechos reservados.</p>
+          <div class="payment-methods">
+            <i class="fab fa-cc-visa"></i>
+            <i class="fab fa-cc-mastercard"></i>
+            <i class="fab fa-paypal"></i>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

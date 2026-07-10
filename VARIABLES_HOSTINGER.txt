@@ -1,0 +1,39 @@
+# Variables de Entorno para Hostinger
+
+Copia y pega estas variables en la sección "Variables de entorno" del panel de Hostinger.
+
+### 1. Configuración de Base de Datos (MySQL en Hostinger)
+DB_HOST=localhost
+DB_PORT=3306
+DB_NAME=u966212937_1PkxH
+DB_USER=u966212937_TffWg
+DB_PASS=el_password_que_creaste
+
+### 2. Seguridad
+JWT_SECRET=escribe_una_clave_secreta_aqui (ej: lucesa_secure_2024)
+PORT=3000
+
+### 3. CT Online (Catálogo y Envíos)
+CT_API_BASE=http://connect.ctonline.mx:3001
+CT_FTP_HOST=216.70.82.104
+CT_FTP_USER=tu_usuario_ftp_ct
+CT_FTP_PASS=tu_password_ftp_ct
+CT_EMAIL=tu_email_registrado_en_ct
+CT_CLIENTE=tu_id_cliente_ct
+CT_RFC=tu_rfc_ct
+
+### 4. Pasarelas de Pago
+MP_ACCESS_TOKEN=APP_USR-1652504619526047-021817-15ada7d21195e170d3baa9bc6fb10515-2554158232
+MP_PUBLIC_KEY=APP_USR-b8547c50-6c6f-45c7-bf95-af810a8875e7
+MP_CLIENT_ID=1652504619526047
+PAYPAL_CLIENT_ID=tu_client_id_paypal
+PAYPAL_CLIENT_SECRET=tu_client_secret_paypal
+
+### 5. Email (Notificaciones)
+GMAIL_USER=tu_correo@gmail.com
+GMAIL_APP_PASS=tu_password_de_aplicacion_gmail (no es tu contraseña normal)
+NOTIFY_EMAIL=correo_donde_recibiras_avisos@tu-dominio.com
+
+---
+*Nota: Asegúrate de usar el host "localhost" y el puerto 3306 en Hostinger.*
+

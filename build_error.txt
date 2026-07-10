@@ -1,0 +1,27 @@
+
+> ecommerce-prototype@1.0.0 build
+> vite build
+
+vite v5.4.21 building for production...
+✓ 0 modules transformed.
+x Build failed in 106ms
+error during build:
+[vite:build-html] Unable to parse HTML; parse5 error code invalid-first-character-of-tag-name
+ at /Users/ing.miriamcastro/.gemini/antigravity/scratch/ecommerce-prototype/product.html:373:87
+371|            // 1. INSTANT MODE: Check if we have preview data from the previous page
+372|            const preview = JSON.parse(localStorage.getItem('lucesa_product_preview') || 'null');
+373|            if (preview && preview.id === productId && (Date.now() - preview.timestamp < 300000)) { // 5 min fresh
+   |                                                                                        ^
+374|                console.log('Instant Mode: Rendering preview data');
+375|                renderProductData(preview.data, true);
+file: /Users/ing.miriamcastro/.gemini/antigravity/scratch/ecommerce-prototype/product.html
+    at handleParseError (file:///Users/ing.miriamcastro/.gemini/antigravity/scratch/ecommerce-prototype/node_modules/vite/dist/node/chunks/dep-BK3b2jBa.js:35172:9)
+    at Parser.onParseError (file:///Users/ing.miriamcastro/.gemini/antigravity/scratch/ecommerce-prototype/node_modules/vite/dist/node/chunks/dep-BK3b2jBa.js:35097:7)
+    at Tokenizer._err (file:///Users/ing.miriamcastro/.gemini/antigravity/scratch/ecommerce-prototype/node_modules/vite/dist/node/chunks/dep-D-7KCb9p.js:1155:89)
+    at Tokenizer._stateTagOpen (file:///Users/ing.miriamcastro/.gemini/antigravity/scratch/ecommerce-prototype/node_modules/vite/dist/node/chunks/dep-D-7KCb9p.js:1983:26)
+    at Tokenizer._callState (file:///Users/ing.miriamcastro/.gemini/antigravity/scratch/ecommerce-prototype/node_modules/vite/dist/node/chunks/dep-D-7KCb9p.js:1534:22)
+    at Tokenizer._runParsingLoop (file:///Users/ing.miriamcastro/.gemini/antigravity/scratch/ecommerce-prototype/node_modules/vite/dist/node/chunks/dep-D-7KCb9p.js:1179:22)
+    at Tokenizer.write (file:///Users/ing.miriamcastro/.gemini/antigravity/scratch/ecommerce-prototype/node_modules/vite/dist/node/chunks/dep-D-7KCb9p.js:1204:14)
+    at Parser.parse (file:///Users/ing.miriamcastro/.gemini/antigravity/scratch/ecommerce-prototype/node_modules/vite/dist/node/chunks/dep-D-7KCb9p.js:4886:26)
+    at parse (file:///Users/ing.miriamcastro/.gemini/antigravity/scratch/ecommerce-prototype/node_modules/vite/dist/node/chunks/dep-D-7KCb9p.js:7957:19)
+    at traverseHtml (file:///Users/ing.miriamcastro/.gemini/antigravity/scratch/ecommerce-prototype/node_modules/vite/dist/node/chunks/dep-BK3b2jBa.js:35092:15)

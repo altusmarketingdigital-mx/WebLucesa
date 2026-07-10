@@ -1,0 +1,491 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lucesa Distribución - Inicio</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/src/style.css?v=1775676969">
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="main-header">
+      <div class="container header-inner">
+        <a href="/" class="logo">
+          <img src="/logo.svg" alt="Lucesa" class="logo-img"><span>Lucesa</span> Distribución
+        </a>
+        
+        <div class="search-bar">
+          <form id="searchForm">
+            <input type="text" placeholder="¿Qué estás buscando hoy? Ej. Laptops, Tarjetas de video..." aria-label="Buscar productos" />
+            <button type="submit" aria-label="Buscar"><i class="fas fa-search"></i></button>
+          </form>
+        </div>
+        
+        <div class="header-actions">
+          <a href="/profile.html" class="action-item" title="Mi Cuenta">
+            <i class="far fa-user"></i>
+            <span class="action-text">Mi Cuenta</span>
+          </a>
+          <a href="/cart.html" class="action-item cart-action" title="Carrito">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="cart-count" style="display: none;">0</span>
+            <span class="action-text">Carrito</span>
+          </a>
+        </div>
+      </div>
+      
+      <!-- Nav Categories -->
+      <nav class="main-nav">
+        <div class="container">
+          <ul class="nav-links">
+            <li class="has-dropdown">
+              <a href="#"><i class="fas fa-bars"></i> Todas las Categorías</a>
+              <div class="mega-menu" id="dynamicMegaMenu">
+                <!-- Dropdown items will be populated via main.js -->
+                <div style="padding: 1rem;">Cargando categorías espere...</div>
+              </div>
+            </li>
+            <li><a href="https://lucesademexico.com/" target="_blank">Quiénes Somos</a></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <main id="app">
+      <!-- Main Content Block -->
+      
+      <!-- Hero Banner -->
+      <section class="hero">
+        <div class="container">
+          <div class="hero-slider" id="heroSlider">
+            <!-- Slide 1: World Cup Tech -->
+            <div class="hero-slide active" style="background-image: url('/assets/world-cup-banner.png');">
+              <div class="slide-content">
+                <span class="badge-promo">Especial Mundial</span>
+                <h2>Vive el Mundial con la Mejor Tecnología</h2>
+                <p>Equípate con monitores 8K y audio premium para no perderte ningún detalle.</p>
+                <a href="/category.html?search=Router,Switch,Pantalla&or=1&title=Promociones%20Mundial" class="btn btn-primary">Ver Promociones</a>
+              </div>
+            </div>
+            <!-- Slide 2: Gaming -->
+            <div class="hero-slide" style="background-image: url('/assets/gaming-banner.png');">
+              <div class="slide-content">
+                <h2>Rendimiento sin Límites</h2>
+                <p>Descubre lo último en hardware para gaming de alto desempeño.</p>
+                <a href="/category.html?search=Gaming" class="btn btn-primary">Explorar Gaming</a>
+              </div>
+            </div>
+            <!-- Slide 3: Office -->
+            <div class="hero-slide" style="background-image: url('/assets/office-banner.png');">
+              <div class="slide-content">
+                <h2>Productividad al Siguiente Nivel</h2>
+                <p>Periféricos ergonómicos y setups profesionales para tu home office.</p>
+                <a href="/category.html" class="btn btn-primary">Ver Catálogo</a>
+              </div>
+            </div>
+            
+            <!-- Slider Controls -->
+            <div class="slider-dots">
+              <span class="dot active" data-index="0"></span>
+              <span class="dot" data-index="1"></span>
+              <span class="dot" data-index="2"></span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Trust Factors -->
+      <section class="trust-factors">
+        <div class="container trust-inner">
+          <div class="trust-item">
+            <i class="fas fa-shield-alt"></i>
+            <div>
+              <strong>Pagos Seguros</strong>
+              <span>100% Protegidos</span>
+            </div>
+          </div>
+          <div class="trust-item">
+            <i class="fas fa-truck-fast"></i>
+            <div>
+              <strong>Envíos Express</strong>
+              <span>A todo el país</span>
+            </div>
+          </div>
+          <div class="trust-item">
+            <i class="fas fa-undo"></i>
+            <div>
+              <strong>Devoluciones</strong>
+              <span>Hasta 30 días</span>
+            </div>
+          </div>
+          <div class="trust-item">
+            <i class="fas fa-headset"></i>
+            <div>
+              <strong>Soporte Técnico</strong>
+              <span>Ayuda especializada</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Featured Categories -->
+      <section class="featured-categories pt-4">
+        <div class="container">
+          <h3 class="section-title">Categorías Populares</h3>
+          <div class="category-grid">
+             <a href="/category.html?sub=Laptops" class="category-card">
+               <div class="cat-icon"><i class="fas fa-laptop"></i></div>
+               <span>Laptops</span>
+             </a>
+             <a href="/category.html?sub=Microprocesadores" class="category-card">
+               <div class="cat-icon"><i class="fas fa-microchip"></i></div>
+               <span>Procesadores</span>
+             </a>
+             <a href="/category.html?sub=Memorias%20RAM" class="category-card">
+               <div class="cat-icon"><i class="fas fa-memory"></i></div>
+               <span>Memorias</span>
+             </a>
+             <a href="/category.html?sub=Monitores" class="category-card">
+               <div class="cat-icon"><i class="fas fa-desktop"></i></div>
+               <span>Monitores</span>
+             </a>
+             <a href="/category.html?cat=Accesorios%20Gaming" class="category-card">
+               <div class="cat-icon"><i class="fas fa-gamepad"></i></div>
+               <span>Gaming</span>
+             </a>
+             <a href="/category.html?cat=Almacenamiento" class="category-card">
+               <div class="cat-icon"><i class="fas fa-hdd"></i></div>
+               <span>Almacenamiento</span>
+             </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Recommended Products -->
+      <section class="products-carousel pt-4">
+        <div class="container">
+          <div class="section-header">
+            <h3 class="section-title">Recomendados para ti</h3>
+            <a href="/category.html" class="btn-link">Ver todos <i class="fas fa-arrow-right"></i></a>
+          </div>
+          <div class="product-grid" id="recommendedProducts">
+            <!-- Populated via JS -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Brands -->
+      <section class="brands pt-4 pb-4">
+         <div class="container">
+           <h3 class="section-title">Nuestras Marcas</h3>
+           <div class="brand-grid">
+             <!-- Row 1 -->
+             <div class="brand-item"><img src="https://logo.clearbit.com/4gamers.net" alt="4Gamers" onerror="this.outerHTML='<span style=\'font-weight:800;font-size:18px;\'>4GAMERS</span>'" /></div>
+             <div class="brand-item"><img src="https://cdn.simpleicons.org/acer/black" alt="Acer" onerror="this.outerHTML='<span style=\'font-weight:800;font-size:18px;\'>acer</span>'" /></div>
+             <div class="brand-item"><img src="https://logo.clearbit.com/acteck.com" alt="Acteck" onerror="this.outerHTML='<span style=\'font-weight:800;font-size:18px;\'>ACTECK</span>'" /></div>
+             <div class="brand-item"><img src="https://logo.clearbit.com/adata.com" alt="ADATA" onerror="this.outerHTML='<span style=\'font-weight:800;font-size:18px;color:#000080;\'>ADATA</span>'" /></div>
+             <div class="brand-item"><img src="https://logo.clearbit.com/adesso.com" alt="Adesso" onerror="this.outerHTML='<span style=\'font-weight:800;font-size:18px;color:#0055a4;\'>adesso</span>'" /></div>
+             
+             <!-- Row 2 -->
+             <div class="brand-item"><img src="https://cdn.simpleicons.org/amd/black" alt="AMD" onerror="this.outerHTML='<span style=\'font-weight:800;font-size:18px;\'>AMD</span>'" /></div>
+             <div class="brand-item"><img src="https://logo.clearbit.com/aoc.com" alt="AOC" onerror="this.outerHTML='<span style=\'font-weight:800;font-size:18px;\'>AOC</span>'" /></div>
+             <div class="brand-item"><img src="https://logo.clearbit.com/apc.com" alt="APC" onerror="this.outerHTML='<span style=\'font-weight:800;font-size:18px;color:#cc0000;\'>APC</span>'" /></div>
+             <div class="brand-item"><img src="https://cdn.simpleicons.org/apple/black" alt="Apple" onerror="this.outerHTML='<span style=\'font-weight:800;font-size:24px;\'></span>'" /></div>
+             <div class="brand-item"><img src="https://logo.clearbit.com/arubanetworks.com" alt="Aruba" onerror="this.outerHTML='<span style=\'font-weight:800;font-size:18px;color:#ff6600;\'>aruba</span>'" /></div>
+             <div class="brand-item"><img src="https://logo.clearbit.com/aspel.com.mx" alt="Aspel" onerror="this.outerHTML='<span style=\'font-weight:800;font-size:18px;color:#0066cc;\'>Aspel</span>'" /></div>
+             
+             <!-- Row 3 -->
+             <div class="brand-item"><img src="https://cdn.simpleicons.org/asus/black" alt="ASUS" onerror="this.outerHTML='<span style=\'font-weight:800;font-size:18px;\'>ASUS</span>'" /></div>
+             <div class="brand-item"><img src="https://cdn.simpleicons.org/autodesk/black" alt="Autodesk" onerror="this.outerHTML='<span style=\'font-weight:800;font-size:18px;\'>AUTODESK</span>'" /></div>
+             <div class="brand-item"><img src="https://cdn.simpleicons.org/avast" alt="Avast" onerror="this.outerHTML='<span style=\'font-weight:800;font-size:18px;color:#ff7700;\'>Avast</span>'" /></div>
+             <div class="brand-item"><img src="https://logo.clearbit.com/azor.com.mx" alt="AZOR" onerror="this.outerHTML='<span style=\'font-weight:800;font-size:18px;color:#0044cc;\'>AZOR</span>'" /></div>
+             
+             <!-- Row 4 -->
+             <div class="brand-item"><img src="https://cdn.simpleicons.org/amazon/black" alt="Amazon" onerror="this.outerHTML='<span style=\'font-weight:800;font-size:18px;\'>amazon</span>'" /></div>
+             <div class="brand-item"><img src="https://cdn.simpleicons.org/canon/E32526" alt="Canon" onerror="this.outerHTML='<span style=\'font-weight:800;font-size:18px;color:#e32526;\'>Canon</span>'" /></div>
+             <div class="brand-item"><img src="https://cdn.simpleicons.org/epson/003399" alt="Epson" onerror="this.outerHTML='<span style=\'font-weight:800;font-size:18px;color:#003399;\'>EPSON</span>'" /></div>
+             <div class="brand-item"><img src="https://cdn.simpleicons.org/lenovo/E2231A" alt="Lenovo" onerror="this.outerHTML='<span style=\'font-weight:800;font-size:18px;color:#e2231a;\'>Lenovo</span>'" /></div>
+             <div class="brand-item"><img src="https://logo.clearbit.com/lexmark.com" alt="Lexmark" onerror="this.outerHTML='<span style=\'font-weight:800;font-size:18px;color:#009933;\'>Lexmark</span>'" /></div>
+             
+             <!-- Row 5 -->
+             <div class="brand-item"><img src="https://cdn.simpleicons.org/logitech/black" alt="Logitech" onerror="this.outerHTML='<span style=\'font-weight:800;font-size:18px;\'>logitech</span>'" /></div>
+             <div class="brand-item"><img src="https://cdn.simpleicons.org/dell/007DB8" alt="Dell" onerror="this.outerHTML='<span style=\'font-weight:800;font-size:18px;color:#007db8;\'>DELL</span>'" /></div>
+             <div class="brand-item"><img src="https://cdn.simpleicons.org/hp/0096D6" alt="HP" onerror="this.outerHTML='<span style=\'font-weight:800;font-size:18px;color:#0096d6;\'>hp</span>'" /></div>
+             <div class="brand-item"><img src="https://cdn.simpleicons.org/samsung/black" alt="Samsung" onerror="this.outerHTML='<span style=\'font-weight:800;font-size:18px;\'>SAMSUNG</span>'" /></div>
+             <div class="brand-item"><img src="https://logo.clearbit.com/kyoceradocumentsolutions.com" alt="Kyocera" onerror="this.outerHTML='<span style=\'font-weight:800;font-size:18px;color:#cc0000;\'>KYOCERA</span>'" /></div>
+             <div class="brand-item"><img src="https://cdn.simpleicons.org/brother/black" alt="Brother" onerror="this.outerHTML='<span style=\'font-weight:800;font-size:18px;color:#0044cc;\'>brother</span>'" /></div>
+             
+             <!-- Row 6 -->
+             <div class="brand-item"><img src="https://cdn.simpleicons.org/fortinet/C01818" alt="Fortinet" onerror="this.outerHTML='<span style=\'font-weight:800;font-size:18px;color:#c01818;\'>FORTINET</span>'" /></div>
+             <div class="brand-item"><img src="https://cdn.simpleicons.org/cisco/049FD9" alt="Cisco" onerror="this.outerHTML='<span style=\'font-weight:800;font-size:18px;color:#049fd9;\'>CISCO</span>'" /></div>
+             <div class="brand-item"><img src="https://cdn.simpleicons.org/sony/black" alt="Sony" onerror="this.outerHTML='<span style=\'font-weight:800;font-size:18px;\'>SONY</span>'" /></div>
+             <div class="brand-item"><img src="https://cdn.simpleicons.org/kaspersky/006D55" alt="Kaspersky" onerror="this.outerHTML='<span style=\'font-weight:800;font-size:18px;color:#006d55;\'>kaspersky</span>'" /></div>
+             <div class="brand-item"><img src="https://cdn.simpleicons.org/norton/FBC116" alt="Norton" onerror="this.outerHTML='<span style=\'font-weight:800;font-size:18px;color:#fbc116;\'>norton</span>'" /></div>
+           </div>
+         </div>
+      </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+      <div class="container footer-inner">
+        <div class="footer-col">
+          <a href="/" class="logo logo-footer">
+            <img src="/logo.svg" alt="Lucesa" class="logo-img"><span>Lucesa</span> Distribución
+          </a>
+          <p>Tu tienda de tecnología de confianza. Los mejores precios, el mejor servicio.</p>
+          <div class="social-links">
+            <a href="https://www.facebook.com/profile.php?id=61585086569466" target="_blank"><i class="fab fa-facebook-f"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Atención al cliente</h4>
+          <ul>
+            <li><a href="/help.html">Centro de ayuda</a></li>
+            <li><a href="/help.html">Garantías</a></li>
+            <li><a href="/help.html">Devoluciones</a></li>
+            <li><a href="/help.html">Facturación</a></li>
+          </ul>
+        </div>
+         <div class="footer-col">
+          <h4>Nuestra Empresa</h4>
+          <ul>
+            <li><a href="/about.html">Acerca de nosotros</a></li>
+            <li><a href="/blog.html">Blog</a></li>
+            <li><a href="/privacy.html">Aviso de privacidad</a></li>
+            <li><a href="/terms.html">Términos y condiciones</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Boletín</h4>
+          <p>Suscríbete para recibir ofertas exclusivas.</p>
+          <form class="newsletter-form">
+            <input type="email" placeholder="Tu correo electrónico">
+            <button class="btn btn-primary" type="button">Suscribir</button>
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="container">
+          <p>&copy; 2026 Lucesa Distribución. Todos los derechos reservados.</p>
+          <div class="social-links">
+            <a href="https://www.facebook.com/profile.php?id=61585086569466" target="_blank"><i class="fab fa-facebook-f"></i></a>
+          </div>
+        </div>
+      </div>
+    <div style="text-align:center;padding:10px;color:gray;font-size:10px;">Versión 1.5 - Fixes Activos</div></footer>
+    <style>
+      /* Hero Carousel Styles - Integrated for hostinger stability */
+      .hero-slider {
+        position: relative;
+        height: 480px;
+        background: #112d4a;
+        margin-top: 20px;
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        box-shadow: var(--shadow-md);
+      }
+      .hero-slide {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        transition: opacity 0.8s ease-in-out;
+        display: flex;
+        align-items: center;
+        padding: 60px;
+        visibility: hidden;
+        background-size: cover;
+        background-position: center;
+      }
+      .hero-slide::before {
+        content: '';
+        position: absolute;
+        top:0; left:0; width:100%; height:100%;
+        background: linear-gradient(90deg, rgba(17, 45, 74, 0.9) 0%, rgba(17, 45, 74, 0.3) 100%);
+      }
+      .hero-slide.active {
+        opacity: 1;
+        visibility: visible;
+        z-index: 5;
+      }
+      .slider-dots {
+        position: absolute;
+        bottom: 25px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 12px;
+        z-index: 20;
+      }
+      .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.4);
+        cursor: pointer;
+        transition: all 0.3s;
+        border: 1px solid rgba(255,255,255,0.2);
+      }
+      .dot.active {
+        background: white;
+        transform: scale(1.3);
+        box-shadow: 0 0 10px rgba(255,255,255,0.5);
+      }
+      .badge-promo {
+        display: inline-block;
+        background: #ef4444;
+        color: white;
+        padding: 5px 14px;
+        border-radius: 6px;
+        font-weight: 800;
+        font-size: 11px;
+        margin-bottom: 15px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        box-shadow: 0 2px 8px rgba(239, 68, 68, 0.4);
+      }
+    </style>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+
+        const slider = document.getElementById('heroSlider');
+        if (!slider) return;
+
+        const slides = slider.querySelectorAll('.hero-slide');
+        const dots = slider.querySelectorAll('.dot');
+        let currentSlide = 0;
+        let slideInterval;
+
+        function showSlide(index) {
+          if (!slides[index]) return;
+          slides.forEach(s => s.classList.remove('active'));
+          dots.forEach(d => d.classList.remove('active'));
+          
+          slides[index].classList.add('active');
+          dots[index].classList.add('active');
+          currentSlide = index;
+        }
+
+        function nextSlide() {
+          let next = (currentSlide + 1) % slides.length;
+          showSlide(next);
+        }
+
+        function startAutoPlay() {
+          stopAutoPlay();
+          slideInterval = setInterval(nextSlide, 6000);
+        }
+
+        function stopAutoPlay() {
+          if (slideInterval) clearInterval(slideInterval);
+        }
+
+        dots.forEach(dot => {
+          dot.addEventListener('click', () => {
+            stopAutoPlay();
+            showSlide(parseInt(dot.dataset.index));
+            startAutoPlay();
+          });
+        });
+
+        if (slides.length > 1) {
+          startAutoPlay();
+        }
+      });
+    </script>
+
+    <!-- Floating WhatsApp -->
+    <a href="https://wa.me/525610177596" class="floating-whatsapp" aria-label="Chat WhatsApp" target="_blank">
+      <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script type="module" src="/src/main.js"></script>
+    <script>
+      const API_BASE = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') ? 'http://localhost:3001' : '';
+
+      // Fetch Products from Backend API (CT Online Catalog)
+      const grid = document.getElementById('recommendedProducts');
+      grid.innerHTML = '<div style="text-align:center;width:100%;grid-column:1/-1;padding:2rem;"><i class="fas fa-spinner fa-spin" style="font-size:2rem;color:var(--primary-color);"></i><p style="margin-top:1rem;">Cargando catálogo...</p></div>';
+
+      fetch(`${API_BASE}/api/products?limit=8`)
+
+        .then(res => res.json())
+        .then(products => {
+          grid.innerHTML = '';
+          if (!products || products.length === 0) {
+            grid.innerHTML = '<p style="grid-column:1/-1;text-align:center;">No hay productos disponibles por el momento.</p>';
+            return;
+          }
+          
+          products.forEach(p => {
+             // Calculate final price in MXN
+             let finalPrice = parseFloat(p.precio) || 0;
+             if (p.moneda === 'USD' && p.tipoCambio) {
+                 finalPrice = finalPrice * parseFloat(p.tipoCambio);
+             }
+             
+             // Format currency
+             const formatPrice = (price) => new Intl.NumberFormat('es-MX', { style: 'currency', currency: 'MXN' }).format(price);
+             
+             // Calculate total stock across all warehouses
+             let stockTotal = p.stockTotal !== undefined ? p.stockTotal : 0;
+             if (p.existencia !== undefined) {
+               if (typeof p.existencia === 'object' && p.existencia !== null) {
+                 stockTotal = Object.values(p.existencia).reduce((acc, val) => acc + (parseInt(val) || 0), 0);
+               } else {
+                 stockTotal = parseInt(p.existencia) || 0;
+               }
+             }
+
+             const imgSrc = (p.imagen && p.imagen.startsWith('http'))
+                ? `${API_BASE}/api/image-proxy?url=${encodeURIComponent(p.imagen)}`
+                : '/assets/no-image.png';
+             const title = p.nombre || 'Producto Desconocido';
+             
+             // Badges
+             let badge = '';
+             if (stockTotal > 50) badge = 'En Stock';
+             else if (stockTotal > 0 && stockTotal <= 10) badge = 'Pocas piezas';
+
+             // Insert into DOM
+             grid.innerHTML += `
+               <div class="product-card" onclick="window.setProductPreview('${p.clave || p.numParte}', ${JSON.stringify(p).replace(/"/g, '&quot;')})">
+                 ${badge ? "<span class='badge'>" + badge + "</span>" : ""}
+                 <a href="/product.html?id=${p.clave || p.numParte}" class="product-img-link">
+                   <img src="${imgSrc}" alt="${p.nombre}" loading="lazy" onerror="this.onerror=null;this.src='/assets/no-image.png'"/>
+                 </a>
+                 <div class="product-info">
+                     <span class="price">${formatPrice(finalPrice)}</span>
+                   </div>
+                   <div style="font-size: 0.8rem; color: #666; margin-bottom: 0.8rem; display: flex; justify-content: space-between;">
+                      <span>Disp: <strong>${stockTotal}</strong></span>
+                      <span title="${p.clave || p.numParte}">SKU: ${p.clave || p.numParte}</span>
+                   </div>
+                   <button class="btn btn-primary btn-block add-to-cart-btn" onclick="window.addToCart('${p.clave || p.numParte}')" ${stockTotal === 0 ? 'disabled' : ''} style="${stockTotal === 0 ? 'opacity:0.6; cursor:not-allowed;' : ''}">
+                     <i class="fas fa-shopping-cart"></i> ${stockTotal === 0 ? 'Agotado' : 'Agregar'}
+                   </button>
+                 </div>
+               </div>
+             `;
+          });
+        })
+        .catch(err => {
+          console.error('Error fetching products:', err);
+          grid.innerHTML = '<p style="grid-column:1/-1;text-align:center;color:red;">Error al cargar el catálogo de productos.</p>';
+        });
+    </script>
+  </body>
+</html>

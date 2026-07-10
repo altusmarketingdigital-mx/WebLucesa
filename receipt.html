@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+  <meta charset="UTF-8">
+  <title>Nota de Venta - Lucesa</title>
+  <style>
+    :root {
+      --primary: #2d3748;
+      --text: #4a5568;
+      --border: #e2e8f0;
+    }
+    body {
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      color: var(--text);
+      line-height: 1.5;
+      margin: 0;
+      padding: 0;
+      background: #f7fafc;
+    }
+    .invoice-box {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 40px;
+      background: #fff;
+      border: 1px solid var(--border);
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    }
+    .invoice-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 40px;
+      border-bottom: 2px solid var(--primary);
+      padding-bottom: 20px;
+    }
+    .company-logo {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    .company-logo img {
+      height: 50px;
+    }
+    .company-name-text h1 {
+      margin: 0;
+      color: var(--primary);
+      font-size: 28px;
+      letter-spacing: -0.5px;
+      line-height: 1;
+    }
+    .company-name-text div {
+      font-size: 14px;
+      color: #718096;
+      margin-top: 2px;
+    }
+    .company-info {
+      text-align: right;
+      font-size: 14px;
+    }
+    .invoice-details {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 40px;
+    }
+    .details-section h3 {
+      margin-top: 0;
+      color: var(--primary);
+      font-size: 16px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 5px;
+      margin-bottom: 10px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 40px;
+    }
+    table th, table td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+    table th {
+      background: #f8fafc;
+      color: var(--primary);
+      font-weight: bold;
+      font-size: 14px;
+      text-transform: uppercase;
+    }
+    table td {
+      font-size: 15px;
+    }
+    table td.price {
+      text-align: right;
+    }
+    table th.price {
+      text-align: right;
+    }
+    .invoice-total {
+      display: flex;
+      justify-content: flex-end;
+    }
+    .total-box {
+      width: 300px;
+    }
+    .total-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .total-row.grand-total {
+      font-size: 20px;
+      font-weight: bold;
+      color: var(--primary);
+      border-bottom: none;
+      border-top: 2px solid var(--primary);
+      padding-top: 15px;
+    }
+    .footer {
+      text-align: center;
+      margin-top: 60px;
+      font-size: 12px;
+      color: #a0aec0;
+      border-top: 1px solid var(--border);
+      padding-top: 20px;
+    }
+
+    @media print {
+      body { background: #fff; }
+      .invoice-box {
+        margin: 0; padding: 0; border: none; box-shadow: none; max-width: 100%;
+      }
+      .no-print { display: none !important; }
+    }
+    
+    .loading-msg { text-align: center; margin-top: 100px; font-size: 20px; }
+    
+    .print-btn-container { text-align: center; margin-bottom: 20px; }
+    .btn { background: var(--primary); color: white; border: none; padding: 10px 20px; cursor: pointer; font-size: 16px; border-radius: 4px;}
+  </style>
+</head>
+<body>
+
+  <div class="print-btn-container no-print" style="margin-top: 20px;">
+      <button class="btn" onclick="window.print()">🖨️ Imprimir Documento</button>
+      <button class="btn" onclick="window.close()" style="background:#718096; margin-left: 10px;">Cerrar</button>
+  </div>
+
+  <div class="invoice-box" id="invoiceBox" style="display:none;">
+    
+    <div class="invoice-header">
+      <div class="company-logo">
+        <img src="/logo.svg" alt="Logo Lucesa" onerror="this.src='/assets/logo-placeholder.png'">
+        <div class="company-name-text">
+          <h1>LUCESA</h1>
+          <div>Distribución</div>
+        </div>
+      </div>
+      <div class="company-info">
+        <strong>SERVICIOS DE TECNOLOGIA, INFRAESTRUCTURA<br>Y SOLUCIONES GLOBALES LUCE</strong><br>
+        RFC: STI250402494<br>
+        Ventas y Soporte en linea<br>
+        contacto@lucesademexico.com
+      </div>
+    </div>
+
+    <div class="invoice-details">
+      <div class="details-section" style="width: 45%;">
+        <h3>Datos del Cliente</h3>
+        <strong id="rClienteNombre">Cargando...</strong><br>
+        Email: <span id="rClienteEmail">...</span><br>
+        Tel: <span id="rClienteTelefono">...</span>
+      </div>
+      <div class="details-section" style="width: 45%; text-align:right;">
+        <h3>Detalles de Operación</h3>
+        <strong>Folio:</strong> <span id="rFolio">...</span><br>
+        <strong>Fecha:</strong> <span id="rFecha">...</span><br>
+        <strong>Forma de Pago:</strong> <span id="rMetodo">...</span><br>
+        <strong>Estatus:</strong> <span id="rEstatus">...</span>
+      </div>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Cant.</th>
+          <th>Descripción del Artículo</th>
+          <th class="price">Precio Unitario</th>
+          <th class="price">Importe</th>
+        </tr>
+      </thead>
+      <tbody id="rTableBody">
+        <!-- Rendered via JS -->
+      </tbody>
+    </table>
+
+    <div class="invoice-total">
+      <div class="total-box">
+        <div class="total-row grand-total">
+          <span>Total</span>
+          <span id="rTotal">$0.00</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      Este documento es una representación impresa de una Nota de Venta interna.<br>
+      Para aclaraciones sobre su compra, por favor conserve este folio.<br>
+      ¡Gracias por su preferencia!
+    </div>
+  </div>
+
+  <div id="loading" class="loading-msg">Generando nota de venta...</div>
+
+  <script src="/src/receipt.js" type="module"></script>
+</body>
+</html>

@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Iniciar Sesión - Lucesa Distribución</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="/src/style.css?v=1775676969">
+  <style>
+    body { background: var(--color-bg-light); }
+
+    .auth-wrapper {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 16px;
+    }
+
+    .auth-card {
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.10);
+      padding: 48px 44px;
+      width: 100%;
+      max-width: 440px;
+      animation: fadeUp .4s ease;
+    }
+
+    @keyframes fadeUp {
+      from { opacity:0; transform:translateY(16px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+
+    .auth-logo {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+    .auth-logo img { height: 48px; }
+    .auth-logo h1 {
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--color-text-main);
+      margin: 12px 0 4px;
+      letter-spacing: -0.5px;
+    }
+    .auth-logo p {
+      font-size: 15px;
+      color: var(--color-text-muted);
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+    .form-group label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--color-text-main);
+      margin-bottom: 7px;
+    }
+    .input-wrap {
+      position: relative;
+    }
+    .input-wrap i.input-icon {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #94a3b8;
+      font-size: 15px;
+      pointer-events: none;
+    }
+    .input-wrap .toggle-pw {
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #94a3b8;
+      cursor: pointer;
+      font-size: 15px;
+      pointer-events: all;
+    }
+    .form-group input {
+      width: 100%;
+      padding: 12px 42px 12px 40px;
+      border: 1.5px solid var(--color-border);
+      border-radius: 10px;
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      color: var(--color-text-main);
+      transition: border .2s, box-shadow .2s;
+      background: #f8fafc;
+      box-sizing: border-box;
+    }
+    .form-group input:focus {
+      border-color: var(--color-primary);
+      box-shadow: 0 0 0 3px rgba(26,92,44,0.10);
+      outline: none;
+      background: #fff;
+    }
+
+    .forgot-link {
+      text-align: right;
+      font-size: 13px;
+      margin-top: -10px;
+      margin-bottom: 18px;
+    }
+    .forgot-link a { color: var(--color-primary); font-weight: 600; }
+
+    .btn-login {
+      width: 100%;
+      padding: 14px;
+      background: var(--color-primary);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background .2s, transform .15s, box-shadow .2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-family: 'Inter', sans-serif;
+    }
+    .btn-login:hover:not(:disabled) {
+      background: var(--color-primary-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(26,92,44,0.25);
+    }
+    .btn-login:disabled { opacity: .65; cursor: not-allowed; }
+
+    .divider {
+      text-align: center;
+      color: #94a3b8;
+      font-size: 13px;
+      margin: 22px 0;
+      position: relative;
+    }
+    .divider::before, .divider::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      width: 42%;
+      height: 1px;
+      background: var(--color-border);
+    }
+    .divider::before { left: 0; }
+    .divider::after  { right: 0; }
+
+    .auth-footer {
+      text-align: center;
+      font-size: 14px;
+      color: var(--color-text-muted);
+      margin-top: 22px;
+    }
+    .auth-footer a {
+      color: var(--color-primary);
+      font-weight: 600;
+    }
+
+    .alert-error, .alert-success {
+      padding: 12px 16px;
+      border-radius: 10px;
+      font-size: 14px;
+      margin-bottom: 18px;
+      display: none;
+      align-items: center;
+      gap: 10px;
+    }
+    .alert-error   { background: #fef2f2; color: #dc2626; border: 1px solid #fecaca; }
+    .alert-success { background: #f0fdf4; color: #16a34a; border: 1px solid #bbf7d0; }
+  </style>
+</head>
+<body>
+  <div class="auth-wrapper">
+    <div class="auth-card">
+      <div class="auth-logo">
+        <a href="/"><img src="/logo.svg" alt="Lucesa" onerror="this.style.display='none'"></a>
+        <h1>Bienvenido de vuelta</h1>
+        <p>Ingresa a tu cuenta de Lucesa Distribución</p>
+      </div>
+
+      <div class="alert-error"   id="alertError"><i class="fas fa-exclamation-circle"></i> <span id="errorMsg"></span></div>
+      <div class="alert-success" id="alertSuccess"><i class="fas fa-check-circle"></i> <span id="successMsg"></span></div>
+
+      <form id="loginForm" novalidate>
+        <div class="form-group">
+          <label for="email">Correo electrónico</label>
+          <div class="input-wrap">
+            <i class="fas fa-envelope input-icon"></i>
+            <input type="email" id="email" placeholder="juan@ejemplo.com" autocomplete="email" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Contraseña</label>
+          <div class="input-wrap">
+            <i class="fas fa-lock input-icon"></i>
+            <input type="password" id="password" placeholder="Tu contraseña" autocomplete="current-password" required>
+            <i class="fas fa-eye toggle-pw" id="togglePw" title="Mostrar/ocultar contraseña"></i>
+          </div>
+        </div>
+
+        <div class="forgot-link">
+          <a href="#">¿Olvidaste tu contraseña?</a>
+        </div>
+
+        <button type="submit" class="btn-login" id="loginBtn">
+          <i class="fas fa-sign-in-alt"></i> Iniciar Sesión
+        </button>
+      </form>
+
+      <div class="divider">o</div>
+
+      <div class="auth-footer">
+        ¿No tienes cuenta? <a href="/register.html">Regístrate gratis</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const API = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') ? 'http://localhost:3001' : '';
+
+
+    // Si ya está logueado (tiene Token Y Datos de Usuario), redirigir al perfil
+    if (localStorage.getItem('lucesa_token') && localStorage.getItem('lucesa_user')) {
+      window.location.href = '/profile.html';
+    }
+
+    // Toggle mostrar/ocultar contraseña
+    document.getElementById('togglePw').addEventListener('click', function() {
+      const inp = document.getElementById('password');
+      inp.type = inp.type === 'password' ? 'text' : 'password';
+      this.classList.toggle('fa-eye');
+      this.classList.toggle('fa-eye-slash');
+    });
+
+    function showError(msg, debug = '', hint = '') {
+      const el = document.getElementById('alertError');
+      const msgEl = document.getElementById('errorMsg');
+      
+      let fullHtml = `<strong>${msg}</strong>`;
+      if (debug) fullHtml += `<br><small style="display:block; margin-top:5px; opacity:0.8;">Detalle: ${debug}</small>`;
+      if (hint)  fullHtml += `<br><div style="margin-top:8px; font-weight:600; color:#b91c1c;"><i class="fas fa-magic"></i> ${hint}</div>`;
+      
+      msgEl.innerHTML = fullHtml;
+      el.style.display = 'flex';
+      document.getElementById('alertSuccess').style.display = 'none';
+    }
+    function showSuccess(msg) {
+      const el = document.getElementById('alertSuccess');
+      document.getElementById('successMsg').textContent = msg;
+      el.style.display = 'flex';
+      document.getElementById('alertError').style.display = 'none';
+    }
+
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = document.getElementById('loginBtn');
+
+      const email    = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+
+      if (!email || !password) return showError('Completa todos los campos.');
+
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Ingresando...';
+
+      try {
+        const res  = await fetch(`${API}/api/auth/login`, {
+          method:  'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body:    JSON.stringify({ email, password })
+        });
+        const data = await res.json();
+
+        if (!res.ok) {
+          const errObj = new Error(data.error || 'Error al iniciar sesión.');
+          errObj.data = data;
+          throw errObj;
+        }
+
+        localStorage.setItem('lucesa_token', data.token);
+        localStorage.setItem('lucesa_user',  JSON.stringify(data.user));
+
+        showSuccess('¡Sesión iniciada! Redirigiendo...');
+
+        // Redirigir a la página previa o al perfil
+        const next = new URLSearchParams(window.location.search).get('next') || '/profile.html';
+        setTimeout(() => { window.location.href = next; }, 1000);
+
+      } catch (err) {
+        // Si err es un objeto con debug/hint (venía del JSON) o un Error estándar
+        if (err.data) {
+           showError(err.data.error || 'Error', err.data.debug, err.data.hint);
+        } else {
+           showError(err.message);
+        }
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Iniciar Sesión';
+      }
+    });
+  </script>
+</body>
+</html>
